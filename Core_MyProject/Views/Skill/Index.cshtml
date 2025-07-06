@@ -1,0 +1,50 @@
+﻿﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+@using EntityLayer.Concrete
+@model List<Skill>
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th> # </th>
+                                <th> BAŞLIK </th>
+                                <th> ORAN </th>
+                                <th> YETENEK SİL </th>
+                                <th> YETENEK DÜZENLE </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th>
+                                        @item.SkillId
+                                    </th>
+                                    <td> @item.Title </td>
+                                    <td>
+                                        @item.Value
+                                        <div class="progress">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: @item.Value%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </td>
+                                    <td> <a href="/Skill/EditSkill/@item.SkillId" class="btn btn-outline-warning btn-fw">Düzenle</a> </td>
+                                    <td> <a href="/Skill/DeleteSkill/@item.SkillId" class="btn btn-outline-danger btn-fw">Sil</a> </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <br />
+                    <a href="/Skill/AddSkill" class="btn btn-outline-success btn-fw">Yeni Yetenek Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

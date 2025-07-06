@@ -1,0 +1,35 @@
+﻿﻿@{
+    ViewData["Title"] = "EditSkill";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+@using EntityLayer.Concrete
+@model Skill
+
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            @using (Html.BeginForm("EditSkill", "Skill", FormMethod.Post))
+            {
+                <form class="forms-sample" method="post">
+                    <div class="form-group">
+                        <label for="exampleInputName1">Yetenek Adı</label>
+                        @Html.HiddenFor(x => x.SkillId)
+                        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = Model.Title, @Type = "text" })
+                        @Html.ValidationMessageFor(x => x.Title)
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName1">Yetenek Puanı / max.100</label>
+                        @Html.TextBoxFor(x => x.Value, new { @class = "form-control", @placeholder = Model.Value, @Type = "text" })
+                        @Html.ValidationMessageFor(x => x.Value)
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Yetenek Güncelle</button>
+                    <button class="btn btn-dark">Vazgeç</button>
+                </form>
+            }
+        </div>
+    </div>
+</div>
